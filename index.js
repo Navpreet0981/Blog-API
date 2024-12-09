@@ -35,19 +35,19 @@ let posts = [
 let lastId = 3;
 
 // Middleware
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //Write your code here//
 
 //CHALLENGE 1: GET All posts
-app.get("/posts", (res, req) =>{
+app.get("/posts", (req, res) =>{
   console.log(posts);
   res.json(posts);
 })
 
 //CHALLENGE 2: GET a specific post by id
-app.get("/posts/:id", (res, req)=>{
+app.get("/posts/:id", (req, res)=>{
   const id = parseInt(req.params.id);
   const post = posts.find((p) => p.id === id);
   if(!post) return res.status(404).json({message: "Post Not Found"})
@@ -55,7 +55,7 @@ app.get("/posts/:id", (res, req)=>{
 })
 
 //CHALLENGE 3: POST a new post
-app.post("/posts", (res, req)=>{
+app.post("/posts", ( req, res)=>{
   const newId = lastId += 1;
   const post ={
     id :newId,
